@@ -1,0 +1,7 @@
+{
+  "name": "women.fbcpaso.org",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
