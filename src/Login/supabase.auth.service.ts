@@ -2,6 +2,7 @@ import { createClient, Provider, SupabaseClient, User } from '@supabase/supabase
 import { BehaviorSubject } from 'rxjs';
 
 import { keys } from '../services/keys.service';
+import SupabaseDataService from '../services/supabase.data.service';
 //import SupabaseDataService from '../services/supabase.data.service'
 
 const supabase: SupabaseClient = createClient(keys.SUPABASE_URL, keys.SUPABASE_KEY);
@@ -18,8 +19,9 @@ export default class SupabaseAuthService {
   }
 
   public user = new BehaviorSubject<User | null>(null);
+  public profile = new BehaviorSubject<any>(null);
   private _user: User | null = null;
-
+  private _profile: any = null;
   public static subscription: any = null;
   
   
@@ -30,9 +32,17 @@ export default class SupabaseAuthService {
         if (event === 'SIGNED_IN' && session) {
           this._user = session.user;
           this.user.next(session.user);
+          console.log('***************************');
+          console.log('**** LOAD PROFILE HERE ****');
+          console.log('***************************');
+          this.loadProfile();
         } else if (session === null) {
           this._user = null;
           this.user.next(null);
+          console.log('***************************');
+          console.log('**** CLEAR PROFILE HERE ***');
+          console.log('***************************');
+          this.loadProfile();
         }  
     });  
   }
@@ -48,6 +58,27 @@ export default class SupabaseAuthService {
       // no current user
     }
   };
+
+  private async loadProfile() {
+    if (this._user?.id!) {
+      const { data, error } = 
+      await supabase.from('profile')
+      .select('*')
+      .eq('id', this._user?.id!)
+      .limit(1)
+      .single(); // return a single object (not an array)
+      if (error) {
+        console.error('loadProfile error: ', error);
+      } else {
+        this._profile = data;
+        this.profile.next(data);
+      }
+    } else {
+      this._profile = null;
+      this.profile.next(null);
+  }
+
+  }
 
   public getCurrentUser() {
     return this._user;

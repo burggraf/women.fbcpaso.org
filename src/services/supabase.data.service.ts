@@ -47,25 +47,19 @@ export default class SupabaseDataService {
     return { data, error };
   }
 
-
-  public async getMyProfile() {
-    if (!supabaseAuthService) {
-      supabaseAuthService = SupabaseAuthService.getInstance();
-    }
-    const user = supabaseAuthService.getCurrentUser();
-    console.log('*** got current user', user);
-    if (user) {
+  public async getProfile(id: string) {
+    if (id) {
       const { data, error } = 
       await supabase.from('profile')
       .select('*')
-      .eq('id', user.id)
+      .eq('id', id)
       .limit(1)
       .single(); // return a single object (not an array)
       return { data, error };  
     } else {
-      return { data: {}, error: null };
+      console.log('#### getProfile: no id');
+      return { data: {}, error: null };  
     }
-  }
-
+  } 
 
 }

@@ -3,21 +3,23 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 //import ExploreContainer from '../components/ExploreContainer';
 import './Profile.css';
 import SupabaseDataService from '../services/supabase.data.service'
-import { useState } from 'react';
+import SupabaseAuthService from '../Login/supabase.auth.service'
+import { useEffect, useState } from 'react';
+import { User } from '@supabase/supabase-js';
 const supabaseDataService = SupabaseDataService.getInstance();
+const supabaseAuthService = SupabaseAuthService.getInstance();
 
 const Profile: React.FC = () => {
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(()=>{
+    // Only run this one time!  No multiple subscriptions!
+    supabaseAuthService.profile.subscribe((profile: any | null) => {
+      setProfile(profile);
+    });
+  }, []) // <-- empty dependency array
 
   // const { name } = useParams<{ name: string; }>();
-  const [profile, setProfile] = useState<any>({});
-  useIonViewWillEnter(async () => {
-    const { data, error } = await supabaseDataService.getMyProfile();
-    if (error) {
-      console.error('getMyProfile error', error);
-    } else {
-      setProfile(data);
-    }
-  });
   
   return (
     <IonPage>
