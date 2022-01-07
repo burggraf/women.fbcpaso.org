@@ -6,7 +6,8 @@ import Menu from './components/Menu';
 import Login from './Login/Login';
 import ResetPassword from './Login/ResetPassword';
 import Page from './pages/Page';
-import Dashboard from './/pages/Dashboard';
+import Dashboard from './pages/Dashboard';
+import Calendar from './pages/Calendar';
 import StartupService from './services/startup.service';
 
 /* Theme variables */
@@ -41,6 +42,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/login" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/calendar" component={Calendar} />
 
             <Route path="/resetpassword/:token" component={ResetPassword} />
           </IonRouterOutlet>

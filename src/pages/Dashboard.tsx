@@ -3,7 +3,7 @@ import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, Io
 //import ExploreContainer from '../components/ExploreContainer';
 import './Dashboard.css';
 
-const Page: React.FC = () => {
+const Dashboard: React.FC = () => {
 
   // const { name } = useParams<{ name: string; }>();
 
@@ -18,17 +18,11 @@ const Page: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Dashboard</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        content here...
+      <IonContent className="ion-padding">
+        customized dashboard screen here...
       </IonContent>
     </IonPage>
   );
 };
 
-export default Page;
+export default Dashboard;
