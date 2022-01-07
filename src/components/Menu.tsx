@@ -30,6 +30,7 @@ interface AppChild {
 addIcons({
   'barchart': barChart,
   'home': home,
+  'person': person,
   'people': people,
   'hammer': hammer,
   'settings': settings,
@@ -40,28 +41,29 @@ addIcons({
 
 const appPages: AppPage[] = [
 
-  { title: 'Dashboard', url: 'dashboard', icon: 'barchart',
+  { title: 'Home', url: 'dashboard', icon: 'home',
     children: [
-      { title: 'Mail', url: 'mail', icon: 'map' },
+      { title: 'Dashboard', url: 'dashboard', icon: '' },
+      { title: 'Calendar', url: 'calendar', icon: '' },
+      { title: 'Messages', url: 'messages', icon: '' },
     ] 
   },
-  { title: 'Settings & Profile', url: 'settings', icon: 'settings', 
+  { title: 'Profile & Settings', url: 'settings', icon: 'person', 
     children: [
-      { title: 'Settings', url: 'set-settings', icon: 'map' },
-      { title: 'My Profile', url: 'set-profile', icon: 'map' },
+      { title: 'My Profile', url: 'profile', icon: '' },
+      { title: 'Settings', url: 'settings', icon: '' },
     ] 
   },
   { title: 'Help & Information', url: 'information', icon: 'informationcircle',
     children: [
-      { title: 'App Info', url: 'info', icon: 'map' },
-      { title: 'Terms of Use', url: 'inf-termsofuse', icon: 'map' },
-      { title: 'Privacy Policy', url: 'inf-privacy', icon: 'map' },
+      { title: 'App Info', url: 'info', icon: '' },
+      { title: 'Terms of Use', url: 'termsofuse', icon: '' },
+      { title: 'Privacy Policy', url: 'privacy', icon: '' },
     ] 
   },
   { title: 'Admin', url: 'admin', icon: 'lockclosed',
     children: [
-      { title: 'Users', url: 'adm-users', icon: 'map' },
-      { title: 'Data', url: 'adm-data', icon: 'map' },
+      { title: 'Users', url: 'users', icon: '' },
     ]
   }
 
