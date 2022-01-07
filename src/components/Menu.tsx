@@ -87,7 +87,8 @@ const appPages: AppPage[] = [
   },
   { title: 'Admin', url: 'admin', icon: 'lockclosed',
     children: [
-      { title: 'Users', url: 'users', icon: '' },
+      { title: 'Users', url: 'admin/users', icon: '' },
+      { title: 'Groups', url: 'admin/groups', icon: '' },
     ]
   }
 
