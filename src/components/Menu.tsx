@@ -168,8 +168,9 @@ const Menu: React.FC = () => {
       <IonContent>
         <IonList id="inbox-list">
         
-          <IonListHeader><IonImg src="/assets/FBC_color.svg" style={{height: '40px', marginRight: '10px'}}></IonImg>FBC Paso Women</IonListHeader>
-          { email && <IonNote><strong>{email || ''}</strong></IonNote>}
+          <table style={{width: "100%", marginLeft: "10px"}}><tbody><tr><td><IonImg src="/assets/FBC_color.svg" style={{width: '50px'}}></IonImg></td>
+          <td><h3><b>FBC&nbsp;Paso&nbsp;Women</b></h3></td></tr></tbody></table>
+          { email && <IonNote style={{width: '100%'}} class="ion-text-center"><strong>{email || ''}</strong></IonNote>}
           <IonMenuToggle autoHide={false}>
             { email &&
               <IonItem href='' onClick={signOut} lines="none" detail={false}>
