@@ -2,10 +2,10 @@ import { createClient, Provider, SupabaseClient, User } from '@supabase/supabase
 import { BehaviorSubject } from 'rxjs';
 
 import { keys } from '../services/keys.service';
-import SupabaseDataService from '../services/supabase.data.service'
+//import SupabaseDataService from '../services/supabase.data.service'
 
 const supabase: SupabaseClient = createClient(keys.SUPABASE_URL, keys.SUPABASE_KEY);
-const supabaseDataService = SupabaseDataService.getInstance();
+//const supabaseDataService = SupabaseDataService.getInstance();
 
 export default class SupabaseAuthService {
   static myInstance:any = null;
@@ -48,6 +48,10 @@ export default class SupabaseAuthService {
       // no current user
     }
   };
+
+  public getCurrentUser() {
+    return this._user;
+  }
 
   public signUpWithEmail = async (email: string, password: string) => {
     const { user, session, error } = await supabase.auth.signUp({
