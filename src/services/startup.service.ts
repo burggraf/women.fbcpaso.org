@@ -16,7 +16,7 @@ export default class StartupService {
     }
 
     public getDefaultRoute(): string {
-        return '/about';
+        return '/dashboard';
     }
 
     public getStartupRoute(): string {
