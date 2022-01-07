@@ -1,7 +1,7 @@
-import { IonAccordion, IonAccordionGroup, IonBadge, IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
+import { IonAccordion, IonAccordionGroup, IonBadge, IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
 import { User } from '@supabase/supabase-js';
 import { addIcons } from 'ionicons';
-import { archiveOutline, archiveSharp, barChart, barChartOutline, barChartSharp, bookmarkOutline, hammer, heartOutline, heartSharp, home, homeOutline, homeSharp, informationCircle, informationCircleOutline, informationCircleSharp, list, listCircleOutline, listCircleSharp, listOutline, listSharp, lockClosed, lockClosedOutline, lockClosedSharp, logIn, logInOutline, logInSharp, logoApple, logoBitbucket, logoDiscord, logoFacebook, logoGithub, logoGitlab, logoGoogle, logoTwitch, logoTwitter, logOut, logOutOutline, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, people, peopleOutline, peopleSharp, person, personOutline, personSharp, search, searchOutline, searchSharp, settings, settingsOutline, settingsSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { archiveOutline, archiveSharp, barChart, barChartOutline, barChartSharp, book, bookmarkOutline, hammer, handRight, heartOutline, heartSharp, home, homeOutline, homeSharp, informationCircle, informationCircleOutline, informationCircleSharp, list, listCircleOutline, listCircleSharp, listOutline, listSharp, lockClosed, lockClosedOutline, lockClosedSharp, logIn, logInOutline, logInSharp, logoApple, logoBitbucket, logoDiscord, logoFacebook, logoGithub, logoGitlab, logoGoogle, logoTwitch, logoTwitter, logOut, logOutOutline, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, people, peopleOutline, peopleSharp, person, personOutline, personSharp, search, searchOutline, searchSharp, settings, settingsOutline, settingsSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -30,12 +30,14 @@ interface AppChild {
 addIcons({
   'barchart': barChart,
   'home': home,
+  'book': book,
   'person': person,
   'people': people,
   'hammer': hammer,
   'settings': settings,
   'informationcircle': informationCircle,
-  'lockclosed': lockClosed
+  'lockclosed': lockClosed,
+  'handright': handRight
 });
 
 
@@ -48,17 +50,39 @@ const appPages: AppPage[] = [
       { title: 'Messages', url: 'messages', icon: '' },
     ] 
   },
+  { title: 'Bible Studies', url: 'studies', icon: 'book', 
+    children: [
+      { title: 'Tuesday 6:00 AM', url: 'studies/tuesday6am', icon: '' },
+      { title: 'Tuesday 9:00 AM', url: 'studies/tuesday9am', icon: '' },
+      { title: 'Tuesday 6:30 PM', url: 'studies/tuesday630pm', icon: '' },
+      { title: 'Doctrinal Class', url: 'studies/doctrinal', icon: '' },
+    ] 
+  },
+  { title: 'Ministries', url: 'ministries', icon: 'people', 
+    children: [
+      { title: 'Healing', url: 'ministries/healing', icon: '' },
+      { title: 'Special Events', url: 'ministries/events', icon: '' },
+    ] 
+  },
+  { title: 'Prayer', url: 'prayer', icon: 'handright', 
+    children: [
+      { title: 'Send Prayer Request', url: 'prayer/sendrequest', icon: '' },
+      { title: 'View Requests', url: 'prayer/viewrequests', icon: '' },
+      { title: 'My Prayer Journal', url: 'prayer/journal', icon: '' },
+    ] 
+  },
   { title: 'Profile & Settings', url: 'settings', icon: 'person', 
     children: [
       { title: 'My Profile', url: 'profile', icon: '' },
       { title: 'Settings', url: 'settings', icon: '' },
     ] 
   },
-  { title: 'Help & Information', url: 'information', icon: 'informationcircle',
+  { title: 'Help & Information', url: 'about', icon: 'informationcircle',
     children: [
-      { title: 'App Info', url: 'info', icon: '' },
-      { title: 'Terms of Use', url: 'termsofuse', icon: '' },
-      { title: 'Privacy Policy', url: 'privacy', icon: '' },
+      { title: 'About Us', url: 'about/us', icon: '' },
+      { title: 'About FBC Paso', url: 'about/fbcpaso', icon: '' },
+      { title: 'Terms of Use', url: 'about/termsofuse', icon: '' },
+      { title: 'Privacy Policy', url: 'about/privacy', icon: '' },
     ] 
   },
   { title: 'Admin', url: 'admin', icon: 'lockclosed',
@@ -142,7 +166,8 @@ const Menu: React.FC = () => {
 
       <IonContent>
         <IonList id="inbox-list">
-          <IonListHeader>FBC Paso Women</IonListHeader>
+        
+          <IonListHeader><IonImg src="/assets/FBC_color.svg" style={{height: '40px', marginRight: '10px'}}></IonImg>FBC Paso Women</IonListHeader>
           { email && <IonNote><strong>{email || ''}</strong></IonNote>}
           <IonMenuToggle autoHide={false}>
             { email &&
