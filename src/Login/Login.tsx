@@ -36,7 +36,7 @@ const Login: React.FC = () => {
         await supabaseAuthService.signInWithEmail(email, password);
         if (error) { toast(error.message) }
         else { 
-            console.log('signInWithEmail: user, session, error', user, session, error);
+            // console.log('signInWithEmail: user, session, error', user, session, error);
             // window.location.href = '/';
             history.replace('/');
          }

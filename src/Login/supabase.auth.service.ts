@@ -32,19 +32,12 @@ export default class SupabaseAuthService {
         if (event === 'SIGNED_IN' && session) {
           this._user = session.user;
           this.user.next(session.user);
-          console.log('***************************');
-          console.log('**** LOAD PROFILE HERE ****');
-          console.log('***************************');
-          this.loadProfile();
         } else if (session === null) {
           this._user = null;
           this.user.next(null);
-          console.log('***************************');
-          console.log('**** CLEAR PROFILE HERE ***');
-          console.log('***************************');
-          this.loadProfile();
         }  
-    });  
+        this.loadProfile();
+      });  
   }
 
   // ************** auth ****************
