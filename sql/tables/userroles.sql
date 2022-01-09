@@ -1,7 +1,7 @@
 create table if not exists public.userroles (
   id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   userid        UUID REFERENCES auth.users,
-  role          TEXT REFERENCES public.roles,
+  roles         TEXT[],
   created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
