@@ -70,13 +70,7 @@ const Login: React.FC = () => {
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Login Page</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
+      <IonContent>
         <IonGrid class="ion-padding">
             <IonRow>
                 <IonCol>
@@ -88,7 +82,7 @@ const Login: React.FC = () => {
                     <IonInput type="email" 
                     placeholder="Enter your email" 
                     onIonChange={e => setEmail(e.detail.value!)}
-                    value={email} class="inputBox" />
+                    value={email} className="inputBox" />
                 </IonCol>
             </IonRow>
             {!validateEmail(email) && email.length > 0 && 
@@ -108,7 +102,7 @@ const Login: React.FC = () => {
                     <IonInput type="password" 
                     placeholder="Enter your password" 
                     onIonChange={e => setPassword(e.detail.value!)}
-                    value={password} class="inputBox" />
+                    value={password} className="inputBox" />
                 </IonCol>
             </IonRow>
             {password.length > 0 && password.length < 6 && 
@@ -155,10 +149,9 @@ const Login: React.FC = () => {
             </IonRow>
         </IonGrid>
         <div className="ion-text-center">
-        <IonLabel><b>Sign in with:</b></IonLabel>
+        <IonLabel><b>or sign in with:</b></IonLabel>
         </div>
-        <div className="flex-container">
-
+        <div className="flex-container" style={{marginBottom: '30px'}}>
                 <ProviderSignInButton name="google" />
                 <ProviderSignInButton name="facebook" />
                 <ProviderSignInButton name="twitter" />
@@ -170,12 +163,8 @@ const Login: React.FC = () => {
                 <ProviderSignInButton name="github" />
                 <ProviderSignInButton name="bitbucket" />
                 <ProviderSignInButton name="gitlab" />
-
+                <ProviderSignInButton name="azure" />
         </div>
-
-
-
-        
       </IonContent>
     </IonPage>
   );

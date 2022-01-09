@@ -1,4 +1,4 @@
-import { IonButton, IonIcon, useIonToast } from '@ionic/react'
+import { IonButton, IonCol, IonGrid, IonIcon, IonRow, useIonToast } from '@ionic/react'
 import {
 	logoApple,
 	logoBitbucket,
@@ -7,6 +7,7 @@ import {
 	logoGithub,
 	logoGitlab,
 	logoGoogle,
+	logoMicrosoft,
 	logoSlack,
 	logoTwitch,
 	logoTwitter,
@@ -36,6 +37,8 @@ addIcons({
 	twitter: logoTwitter,
 	slack: logoSlack,
 	spotify: logoSpotify,
+	microsoft: logoMicrosoft,
+	azure: logoMicrosoft
 })
 
 const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
@@ -69,17 +72,28 @@ const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
 	}
 
 	return (
-		<div
-			className='flex-child ion-text-center'
-			onClick={() => {
-				signInWithProvider(name as Provider)
-			}}>
-			<IonButton>
-				<IonIcon icon={name} size='large' />
-			</IonButton>
-			<br />
-			<b>{nameProperCase}</b>
-		</div>
+
+		// <IonButton expand="block" color="medium"
+		// onClick={() => {
+		// 	signInWithProvider(name as Provider)
+		// }}>
+		// <IonIcon icon={name} size="large" slot="start" />
+		// 	<b>Sign in with {name}</b>
+		// </IonButton>
+
+		<IonButton expand="block" color="medium"
+		style={{width: '180px'}}
+		onClick={() => {
+			signInWithProvider(name as Provider)
+		}}>
+		<IonGrid><IonRow>
+			<IonCol><div style={{height: '100%', marginTop: "15%"}}><b>{name}</b></div></IonCol>
+			<IonCol style={{textAlign: "right"}}><IonIcon icon={name} size="large" /></IonCol>
+		</IonRow></IonGrid>
+		
+			
+		</IonButton>
+
 	)
 }
 
