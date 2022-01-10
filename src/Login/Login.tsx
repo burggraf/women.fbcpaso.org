@@ -71,7 +71,7 @@ const Login: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonGrid class="ion-padding">
+        <IonGrid class="ion-padding" style={{maxWidth: '375px'}}>
             <IonRow>
                 <IonCol>
                     <IonLabel><b>Email</b></IonLabel>
@@ -148,22 +148,49 @@ const Login: React.FC = () => {
                 </IonCol>
             </IonRow>
         </IonGrid>
-        <div className="ion-text-center">
+        <div className="ion-text-center" style={{marginBottom: '10px'}}>
         <IonLabel><b>or sign in with:</b></IonLabel>
         </div>
-        <div className="flex-container" style={{marginBottom: '30px'}}>
+        <IonGrid class="ion-padding" style={{maxWidth: '375px'}}>
+            <IonRow><IonCol>
                 <ProviderSignInButton name="google" />
-                <ProviderSignInButton name="facebook" />
-                <ProviderSignInButton name="twitter" />
-                <ProviderSignInButton name="apple" />
-                <ProviderSignInButton name="spotify" />
-                <ProviderSignInButton name="slack" />
-                <ProviderSignInButton name="twitch" />
-                <ProviderSignInButton name="discord" />
-                <ProviderSignInButton name="github" />
-                <ProviderSignInButton name="bitbucket" />
-                <ProviderSignInButton name="gitlab" />
-                <ProviderSignInButton name="azure" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="facebook" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="twitter" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="apple" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+           <ProviderSignInButton name="spotify" />
+           </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="slack" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="twitch" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="discord" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="github" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="bitbucket" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="gitlab" />
+            </IonCol></IonRow>
+            <IonRow><IonCol>
+            <ProviderSignInButton name="azure" />
+           </IonCol></IonRow>
+        </IonGrid>
+        <div style={{marginBottom: '30px'}}>
+            &nbsp;
         </div>
       </IonContent>
     </IonPage>

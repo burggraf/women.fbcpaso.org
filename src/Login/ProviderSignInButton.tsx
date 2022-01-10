@@ -38,7 +38,7 @@ addIcons({
 	slack: logoSlack,
 	spotify: logoSpotify,
 	microsoft: logoMicrosoft,
-	azure: logoMicrosoft
+	azure: logoMicrosoft,
 })
 
 const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
@@ -53,7 +53,7 @@ const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
 		if (error) {
 			toast(error.message)
 		} else {
-      //window.location.href = '/';
+			//window.location.href = '/';
 			history.replace('/')
 		}
 	}
@@ -72,28 +72,30 @@ const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
 	}
 
 	return (
-
-		// <IonButton expand="block" color="medium"
-		// onClick={() => {
-		// 	signInWithProvider(name as Provider)
-		// }}>
-		// <IonIcon icon={name} size="large" slot="start" />
-		// 	<b>Sign in with {name}</b>
-		// </IonButton>
-
-		<IonButton expand="block" color="medium"
-		style={{width: '180px'}}
-		onClick={() => {
-			signInWithProvider(name as Provider)
-		}}>
-		<IonGrid><IonRow>
-			<IonCol><div style={{height: '100%', marginTop: "15%"}}><b>{name}</b></div></IonCol>
-			<IonCol style={{textAlign: "right"}}><IonIcon icon={name} size="large" /></IonCol>
-		</IonRow></IonGrid>
-		
-			
+		<IonButton
+			expand='block'
+			color='medium'
+			// style={{ width: '350px' }}
+			onClick={() => {
+				signInWithProvider(name as Provider)
+			}}>
+			{/* <IonGrid>
+				<IonRow>
+					<IonCol>
+						<div style={{ height: '100%', marginTop: '0%' }}>
+							<b>{name}</b>
+						</div>
+					</IonCol>
+					<IonCol style={{ textAlign: 'right' }}>
+						<IonIcon icon={name} size='large' />
+					</IonCol>
+				</IonRow>
+			</IonGrid> */}
+			<b style={{textTransform: "uppercase"}}>{name}</b>
+			<IonIcon icon={name} size='large' slot="start" />
+	
 		</IonButton>
-
+	
 	)
 }
 
