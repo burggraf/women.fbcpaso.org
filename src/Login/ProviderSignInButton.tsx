@@ -20,7 +20,8 @@ import { Provider } from '@supabase/supabase-js'
 import { useHistory } from 'react-router'
 
 interface ContainerProps {
-	name: string
+	name: string,
+	color?: string,
 }
 
 const supabaseAuthService = SupabaseAuthService.getInstance()
@@ -41,7 +42,7 @@ addIcons({
 	azure: logoMicrosoft,
 })
 
-const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
+const ProviderSignInButton: React.FC<ContainerProps> = ({ name, color }) => {
 	const nameProperCase = name.charAt(0).toUpperCase() + name.slice(1)
 	const history = useHistory()
 	const signInWithProvider = async (provider: Provider) => {
@@ -70,32 +71,19 @@ const ProviderSignInButton: React.FC<ContainerProps> = ({ name }) => {
 			//onWillDismiss: () => console.log('will dismiss'),
 		})
 	}
-
 	return (
 		<IonButton
-			expand='block'
-			color='medium'
-			// style={{ width: '350px' }}
+			// expand='block'
+			// color='primary'
+			fill='clear'
+			className='round-button'
+			style={{ margin: '10px', color: color || 'primary' }}
 			onClick={() => {
 				signInWithProvider(name as Provider)
 			}}>
-			{/* <IonGrid>
-				<IonRow>
-					<IonCol>
-						<div style={{ height: '100%', marginTop: '0%' }}>
-							<b>{name}</b>
-						</div>
-					</IonCol>
-					<IonCol style={{ textAlign: 'right' }}>
-						<IonIcon icon={name} size='large' />
-					</IonCol>
-				</IonRow>
-			</IonGrid> */}
-			<b style={{textTransform: "uppercase"}}>{name}</b>
-			<IonIcon icon={name} size='large' slot="start" />
-	
-		</IonButton>
-	
+			{/* <b style={{textTransform: "uppercase"}}>{name}</b> */}
+			<IonIcon icon={name} size='large' slot="icon-only" />	
+		</IonButton>	
 	)
 }
 

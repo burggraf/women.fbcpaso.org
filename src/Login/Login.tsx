@@ -16,7 +16,7 @@ const validateEmail = (email: string) => {
 }
 const Login: React.FC = () => {
     const history = useHistory();
-
+    const [signUpMode, setSignUpMode] = useState(false);
     const [present, dismiss] = useIonToast();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -59,6 +59,9 @@ const Login: React.FC = () => {
             if (error) { toast(error.message) }
             else { toast('Please check your email for a sign in link', 'success') }
         }
+    const toggleSignUpMode = async () => {
+        setSignUpMode(!signUpMode);
+    }
     
   return (
     <IonPage>
@@ -67,7 +70,7 @@ const Login: React.FC = () => {
           <IonButtons slot="start">
             <IonBackButton defaultHref="/page" />
           </IonButtons>
-          <IonTitle>Login</IonTitle>
+          <IonTitle>Sign In</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -103,6 +106,9 @@ const Login: React.FC = () => {
                     placeholder="Enter your password" 
                     onIonChange={e => setPassword(e.detail.value!)}
                     value={password} className="inputBox" />
+                    <div onClick={resetPassword} className="ion-text-right" style={{paddingTop:'10px'}}>
+                        <IonLabel>Forgot password?</IonLabel>
+                    </div>
                 </IonCol>
             </IonRow>
             {password.length > 0 && password.length < 6 && 
@@ -112,34 +118,47 @@ const Login: React.FC = () => {
                     </IonCol>
                 </IonRow>
             }
-            <IonRow>
-                <IonCol>
-                    <IonButton expand="block" 
-                    disabled={!validateEmail(email) || password.length < 6}
-                    onClick={signInWithEmail}>
-                        <IonIcon icon={logIn} size="large" />&nbsp;&nbsp;
-                        <b>Sign in with email</b>
-                    </IonButton>
-                </IonCol>
-            </IonRow>
-            <IonRow>
-                <IonCol>
+            { !signUpMode &&
+                <IonRow>
+                    <IonCol>
                         <IonButton expand="block" 
                         disabled={!validateEmail(email) || password.length < 6}
-                        onClick={signUp}>
-                        <IonIcon icon={personAdd} size="large" />&nbsp;&nbsp;
-                        <b>Sign Up</b></IonButton>
-                </IonCol>
-                <IonCol>
-                    <IonButton expand="block" 
-                    disabled={!validateEmail(email) || password.length > 0}
-                    onClick={resetPassword}>
-                    <IonIcon icon={refreshCircle} size="large" />&nbsp;&nbsp;
-                    <b>Reset Password</b></IonButton>
-                </IonCol>
-            </IonRow>
+                        onClick={signInWithEmail}>
+                            <IonIcon icon={logIn} size="large" />&nbsp;&nbsp;
+                            <b>Sign in with email</b>
+                        </IonButton>
+                        <div onClick={toggleSignUpMode} className="ion-text-center" style={{paddingTop:'10px'}}>
+                            <IonLabel>Don't have an account? <b>Sign Up</b></IonLabel>
+                        </div>
+                    </IonCol>
+                </IonRow>
+            }
+            { signUpMode &&
+                <IonRow>
+                    <IonCol>
+                            <IonButton expand="block" 
+                            disabled={!validateEmail(email) || password.length < 6}
+                            onClick={signUp}>
+                            <IonIcon icon={personAdd} size="large" />&nbsp;&nbsp;
+                            <b>Sign Up</b></IonButton>
+                            <div onClick={toggleSignUpMode} className="ion-text-center" style={{paddingTop:'10px'}}>
+                            <IonLabel>Already have an account? <b>Sign In</b></IonLabel>
+                        </div>
+                    </IonCol>
+                    {/* <IonCol>
+                        <IonButton expand="block" 
+                        disabled={!validateEmail(email) || password.length > 0}
+                        onClick={resetPassword}>
+                        <IonIcon icon={refreshCircle} size="large" />&nbsp;&nbsp;
+                        <b>Reset Password</b></IonButton>
+                    </IonCol> */}
+                </IonRow>
+            }
             <IonRow>
                 <IonCol>
+                    <div className="ion-text-center" style={{marginBottom: '10px'}}>
+                        <IonLabel><b>or</b></IonLabel>
+                    </div>
                     <IonButton expand="block" 
                     disabled={!validateEmail(email) || password.length > 0}
                     onClick={sendMagicLink}>
@@ -148,46 +167,28 @@ const Login: React.FC = () => {
                 </IonCol>
             </IonRow>
         </IonGrid>
-        <div className="ion-text-center" style={{marginBottom: '10px'}}>
-        <IonLabel><b>or sign in with:</b></IonLabel>
+        <div className="ion-text-center">
+        <IonLabel><b>or, sign in with:</b></IonLabel>
         </div>
         <IonGrid class="ion-padding" style={{maxWidth: '375px'}}>
-            <IonRow><IonCol>
-                <ProviderSignInButton name="google" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
+            <IonRow>
+                <IonCol>
+
+
+            <ProviderSignInButton name="google" color="rgb(227,44,41)" />
             <ProviderSignInButton name="facebook" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="twitter" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="apple" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-           <ProviderSignInButton name="spotify" />
-           </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="slack" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="twitch" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="discord" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="github" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="bitbucket" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="gitlab" />
-            </IonCol></IonRow>
-            <IonRow><IonCol>
-            <ProviderSignInButton name="azure" />
-           </IonCol></IonRow>
+            <ProviderSignInButton name="twitter" color="rgb(30,135,235)" />
+            <ProviderSignInButton name="apple" color="gray" />
+            <ProviderSignInButton name="spotify" color="rgb(36,203,75)" />
+            <ProviderSignInButton name="slack" color="rgb(221,157,35)" />
+            <ProviderSignInButton name="twitch" color="rgb(120,34,244)" />            
+            <ProviderSignInButton name="discord" color="rgb(116,131,244)" />
+            <ProviderSignInButton name="github" color="rgb(0,0,0)" />
+            <ProviderSignInButton name="bitbucket" color="rgb(56,98,169)" />
+            <ProviderSignInButton name="gitlab" color="rgb(209,44,30)" />
+            <ProviderSignInButton name="azure" color="rgb(228,54,26)" />
+            </IonCol>
+            </IonRow>
         </IonGrid>
         <div style={{marginBottom: '30px'}}>
             &nbsp;
