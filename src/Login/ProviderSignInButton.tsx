@@ -77,7 +77,7 @@ const ProviderSignInButton: React.FC<ContainerProps> = ({ name, color }) => {
 			// color='primary'
 			fill='clear'
 			className='round-button'
-			style={{ margin: '10px', color: color || 'primary' }}
+			style={{ margin: '8px', color: color || 'primary' }}
 			onClick={() => {
 				signInWithProvider(name as Provider)
 			}}>

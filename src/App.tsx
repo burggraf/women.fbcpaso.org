@@ -8,6 +8,8 @@ import ResetPassword from './Login/ResetPassword'
 import Page from './pages/Page'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 import NotFound from './pages/NotFound'
 import Calendar from './pages/Calendar'
 import Groups from './pages/admin/Groups'
@@ -52,6 +54,8 @@ const App: React.FC = () => {
 							<Route path='/admin/groups' component={Groups} />
 							<Route path='/admin/users' component={Users} />
 							<Route path='/resetpassword/:token' component={ResetPassword} />
+							<Route path='/privacy' component={Privacy} />
+							<Route path='/terms' component={Terms} />
               <Route component={NotFound} />
 						</Switch>
 					</IonRouterOutlet>

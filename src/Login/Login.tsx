@@ -190,9 +190,16 @@ const Login: React.FC = () => {
             </IonCol>
             </IonRow>
         </IonGrid>
-        <div style={{marginBottom: '30px'}}>
-            &nbsp;
+
+        <div onClick={() => { history.push('/privacy')}}
+            className="ion-text-center" style={{marginTop: '10px', marginBottom: '30px'}}>
+            <IonLabel>View our privacy policy</IonLabel>
         </div>
+        <div onClick={() => { history.push('/terms')}}
+            className="ion-text-center" style={{marginBottom: '60px'}}>
+            <IonLabel>View our terms of service</IonLabel>
+        </div>
+
       </IonContent>
     </IonPage>
   );
