@@ -3,11 +3,15 @@ create table if not exists public.groups (
   id            UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   parentid      UUID REFERENCES groups NULL,
   name          TEXT,
+  icon          TEXT,
+  path          TEXT,
+  sortkey       TEXT,
+  menu          TEXT,
   created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   created_by    UUID REFERENCES auth.users,
   xtra          JSONB
 );
-
+CREATE INDEX ON public.groups USING btree (menu);
 /*
 ALTER TABLE public.groups ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "select group" ON public.groups FOR SELECT USING (true);

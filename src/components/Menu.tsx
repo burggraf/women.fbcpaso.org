@@ -1,4 +1,4 @@
-import { IonAccordion, IonAccordionGroup, IonBadge, IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote } from '@ionic/react';
+import { IonAccordion, IonAccordionGroup, IonBadge, IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, useIonViewWillEnter } from '@ionic/react';
 import { User } from '@supabase/supabase-js';
 import { addIcons } from 'ionicons';
 import { archiveOutline, archiveSharp, barChart, barChartOutline, barChartSharp, book, bookmarkOutline, hammer, handRight, heartOutline, heartSharp, home, homeOutline, homeSharp, informationCircle, informationCircleOutline, informationCircleSharp, list, listCircleOutline, listCircleSharp, listOutline, listSharp, lockClosed, lockClosedOutline, lockClosedSharp, logIn, logInOutline, logInSharp, logoApple, logoBitbucket, logoDiscord, logoFacebook, logoGithub, logoGitlab, logoGoogle, logoTwitch, logoTwitter, logOut, logOutOutline, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, people, peopleOutline, peopleSharp, person, personOutline, personSharp, search, searchOutline, searchSharp, settings, settingsOutline, settingsSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
@@ -41,7 +41,17 @@ addIcons({
 });
 
 
-const appPages: AppPage[] = [
+
+const appPages1: AppPage[] = [
+
+  // icon: "home"
+  // id: "aa270ec9-e6a9-4e90-a713-035d84cbb8f5"
+  // menu: "main"
+  // parentid: null
+  // parentname: null
+  // title: "Home"
+  // url: null
+  // xtra: null
 
   { title: 'Home', url: 'dashboard', icon: 'home',
     children: [
@@ -97,6 +107,8 @@ const appPages: AppPage[] = [
 
 const Menu: React.FC = () => {
   // const initialMenuRef = useRef();
+  const [appPages, setAppPages] = useState<AppPage[]>([]);
+
   const sidemenu = useRef(null);
   // const location = useLocation();
   let _user: User | null = null;
@@ -124,8 +136,58 @@ const Menu: React.FC = () => {
   //   setMenuContent(renderMenuItems(appPages));
   // },[badges]);
 
+  const getMenu = async (menu: string) => {
+    const { data, error } = await supabaseDataService.getMenu(menu);
+    if (error) {
+      console.error('Error getting menu', error);
+    } else {
+      console.log('getmenu', data);
+      let parent;
+      const pages = [];
+      for (let i=0; i<data.length; i++) {
+        const item = data[i];
+        if (!item.parentid) {
+          parent = item;
+          pages.push({
+            title: item.title,
+            url: item.url,
+            icon: item.icon || '',
+            children: Array()
+          });
+        } else {
+          pages[pages.length-1].children.push({
+            title: item.title,
+            url: item.url,
+            icon: item.icon || ''
+          });
+        }
+      }
+      console.log('*** pages', pages);
+      console.log('*** appPages1', appPages1);
+      setAppPages(pages);
+  // icon: "home"
+  // id: "aa270ec9-e6a9-4e90-a713-035d84cbb8f5"
+  // menu: "main"
+  // parentid: null
+  // parentname: null
+  // title: "Home"
+  // url: null
+  // xtra: null
+
+  // { title: 'Home', url: 'dashboard', icon: 'home',
+  //   children: [
+  //     { title: 'Dashboard', url: 'dashboard', icon: '' },
+  //     { title: 'Calendar', url: 'calendar', icon: '' },
+  //     { title: 'Messages', url: 'messages', icon: '' },
+  //   ] 
+  // },
+
+
+    }
+  }
   useEffect(()=>{
     // Only run this one time!  No multiple subscriptions!
+    getMenu('main');
     supabaseAuthService.user.subscribe((user: User | null) => {
       _user = user;
       // console.log('subscribed: _user', _user);

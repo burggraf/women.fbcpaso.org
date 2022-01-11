@@ -62,4 +62,9 @@ export default class SupabaseDataService {
     }
   } 
 
+  public async getMenu(menu: string) {
+    const { data, error } = 
+    await supabase.rpc('getmenu', { m: menu})
+    return { data, error };
+  }
 }

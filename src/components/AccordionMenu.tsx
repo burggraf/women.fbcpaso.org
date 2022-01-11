@@ -129,7 +129,7 @@ export const AccordionMenu: React.FC<ContainerProps> = ({ appPages, menuRef, bad
             }
           });
         }, 0);
-      }, []) // <-- empty dependency array
+      }, [appPages]) // <-- empty dependency array
             
 
     return (
