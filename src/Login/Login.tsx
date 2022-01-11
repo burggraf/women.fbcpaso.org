@@ -177,8 +177,9 @@ const Login: React.FC = () => {
 
             <ProviderSignInButton name="google" color="rgb(227,44,41)" />
             <ProviderSignInButton name="facebook" />
+            <ProviderSignInButton name="spotify" color="rgb(36,203,75)" />
             <ProviderSignInButton name="twitter" color="rgb(30,135,235)" />
-            <ProviderSignInButton name="apple" color="gray" />
+            {/* <ProviderSignInButton name="apple" color="gray" />
             <ProviderSignInButton name="spotify" color="rgb(36,203,75)" />
             <ProviderSignInButton name="slack" color="rgb(221,157,35)" />
             <ProviderSignInButton name="twitch" color="rgb(120,34,244)" />            
@@ -186,7 +187,7 @@ const Login: React.FC = () => {
             <ProviderSignInButton name="github" color="rgb(0,0,0)" />
             <ProviderSignInButton name="bitbucket" color="rgb(56,98,169)" />
             <ProviderSignInButton name="gitlab" color="rgb(209,44,30)" />
-            <ProviderSignInButton name="azure" color="rgb(228,54,26)" />
+            <ProviderSignInButton name="azure" color="rgb(228,54,26)" /> */}
             </IonCol>
             </IonRow>
         </IonGrid>

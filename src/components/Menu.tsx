@@ -42,67 +42,58 @@ addIcons({
 
 
 
-const appPages1: AppPage[] = [
+// const appPages1: AppPage[] = [
 
-  // icon: "home"
-  // id: "aa270ec9-e6a9-4e90-a713-035d84cbb8f5"
-  // menu: "main"
-  // parentid: null
-  // parentname: null
-  // title: "Home"
-  // url: null
-  // xtra: null
+//   { title: 'Home', url: 'dashboard', icon: 'home',
+//     children: [
+//       { title: 'Dashboard', url: 'dashboard', icon: '' },
+//       { title: 'Calendar', url: 'calendar', icon: '' },
+//       { title: 'Messages', url: 'messages', icon: '' },
+//     ] 
+//   },
+//   { title: 'Bible Studies', url: 'studies', icon: 'book', 
+//     children: [
+//       { title: 'Tuesday 6:00 AM', url: 'studies/tuesday6am', icon: '' },
+//       { title: 'Tuesday 9:00 AM', url: 'studies/tuesday9am', icon: '' },
+//       { title: 'Tuesday 6:30 PM', url: 'studies/tuesday630pm', icon: '' },
+//       { title: 'Doctrinal Class', url: 'studies/doctrinal', icon: '' },
+//     ] 
+//   },
+//   { title: 'Ministries', url: 'ministries', icon: 'people', 
+//     children: [
+//       { title: 'Healing', url: 'ministries/healing', icon: '' },
+//       { title: 'Special Events', url: 'ministries/events', icon: '' },
+//     ] 
+//   },
+//   { title: 'Prayer', url: 'prayer', icon: 'handright', 
+//     children: [
+//       { title: 'Send Prayer Request', url: 'prayer/sendrequest', icon: '' },
+//       { title: 'View Requests', url: 'prayer/viewrequests', icon: '' },
+//       { title: 'My Prayer Journal', url: 'prayer/journal', icon: '' },
+//     ] 
+//   },
+//   { title: 'Profile & Settings', url: 'settings', icon: 'person', 
+//     children: [
+//       { title: 'My Profile', url: 'profile', icon: '' },
+//       { title: 'Settings', url: 'settings', icon: '' },
+//     ] 
+//   },
+//   { title: 'Help & Information', url: 'about', icon: 'informationcircle',
+//     children: [
+//       { title: 'About Us', url: 'about/us', icon: '' },
+//       { title: 'About FBC Paso', url: 'about/fbcpaso', icon: '' },
+//       { title: 'Terms of Use', url: 'about/termsofuse', icon: '' },
+//       { title: 'Privacy Policy', url: 'about/privacy', icon: '' },
+//     ] 
+//   },
+//   { title: 'Admin', url: 'admin', icon: 'lockclosed',
+//     children: [
+//       { title: 'Users', url: 'admin/users', icon: '' },
+//       { title: 'Groups', url: 'admin/groups', icon: '' },
+//     ]
+//   }
 
-  { title: 'Home', url: 'dashboard', icon: 'home',
-    children: [
-      { title: 'Dashboard', url: 'dashboard', icon: '' },
-      { title: 'Calendar', url: 'calendar', icon: '' },
-      { title: 'Messages', url: 'messages', icon: '' },
-    ] 
-  },
-  { title: 'Bible Studies', url: 'studies', icon: 'book', 
-    children: [
-      { title: 'Tuesday 6:00 AM', url: 'studies/tuesday6am', icon: '' },
-      { title: 'Tuesday 9:00 AM', url: 'studies/tuesday9am', icon: '' },
-      { title: 'Tuesday 6:30 PM', url: 'studies/tuesday630pm', icon: '' },
-      { title: 'Doctrinal Class', url: 'studies/doctrinal', icon: '' },
-    ] 
-  },
-  { title: 'Ministries', url: 'ministries', icon: 'people', 
-    children: [
-      { title: 'Healing', url: 'ministries/healing', icon: '' },
-      { title: 'Special Events', url: 'ministries/events', icon: '' },
-    ] 
-  },
-  { title: 'Prayer', url: 'prayer', icon: 'handright', 
-    children: [
-      { title: 'Send Prayer Request', url: 'prayer/sendrequest', icon: '' },
-      { title: 'View Requests', url: 'prayer/viewrequests', icon: '' },
-      { title: 'My Prayer Journal', url: 'prayer/journal', icon: '' },
-    ] 
-  },
-  { title: 'Profile & Settings', url: 'settings', icon: 'person', 
-    children: [
-      { title: 'My Profile', url: 'profile', icon: '' },
-      { title: 'Settings', url: 'settings', icon: '' },
-    ] 
-  },
-  { title: 'Help & Information', url: 'about', icon: 'informationcircle',
-    children: [
-      { title: 'About Us', url: 'about/us', icon: '' },
-      { title: 'About FBC Paso', url: 'about/fbcpaso', icon: '' },
-      { title: 'Terms of Use', url: 'about/termsofuse', icon: '' },
-      { title: 'Privacy Policy', url: 'about/privacy', icon: '' },
-    ] 
-  },
-  { title: 'Admin', url: 'admin', icon: 'lockclosed',
-    children: [
-      { title: 'Users', url: 'admin/users', icon: '' },
-      { title: 'Groups', url: 'admin/groups', icon: '' },
-    ]
-  }
-
-];
+// ];
 
 
 const Menu: React.FC = () => {
@@ -162,27 +153,9 @@ const Menu: React.FC = () => {
           });
         }
       }
-      console.log('*** pages', pages);
-      console.log('*** appPages1', appPages1);
+      console.log('pages:');
+      console.log(JSON.stringify(pages, null, 2));
       setAppPages(pages);
-  // icon: "home"
-  // id: "aa270ec9-e6a9-4e90-a713-035d84cbb8f5"
-  // menu: "main"
-  // parentid: null
-  // parentname: null
-  // title: "Home"
-  // url: null
-  // xtra: null
-
-  // { title: 'Home', url: 'dashboard', icon: 'home',
-  //   children: [
-  //     { title: 'Dashboard', url: 'dashboard', icon: '' },
-  //     { title: 'Calendar', url: 'calendar', icon: '' },
-  //     { title: 'Messages', url: 'messages', icon: '' },
-  //   ] 
-  // },
-
-
     }
   }
   useEffect(()=>{
@@ -204,28 +177,6 @@ const Menu: React.FC = () => {
 
   return (    
     <IonMenu contentId="main" type="overlay" ref={sidemenu}>
-
-      {/* <IonHeader className="menuHeader">
-        <div style={{paddingLeft: "20px"}}>
-          <h4>
-            { email &&
-              <>
-                <img onClick={loadImage} style={{height: '35px', borderRadius: '50%', objectFit: 'cover'}}
-                  src={avatar}
-                />
-                <input type="file" hidden id="fileInput" onChange={selectImage} accept=".jpg, .jpeg, .png" />
-                <span style={{position: 'relative', top: '-8px'}}>&nbsp;&nbsp; { email || ''  }</span>
-              </>
-            }
-            { !email && 
-              <>
-                <IonIcon src="/assets/aire.svg" size="large"></IonIcon>
-                <span style={{position: 'relative', top: '-8px'}}>&nbsp;&nbsp; FBC Paso</span>
-              </>
-            }
-          </h4>
-        </div>
-      </IonHeader> */}
 
       <IonContent>
         <IonList id="inbox-list">
@@ -249,9 +200,6 @@ const Menu: React.FC = () => {
           </IonMenuToggle>
         </IonList>
 
-        {/* <IonAccordionGroup id="page-list" value={selectedAccordion}>
-=          { menuContent }
-        </IonAccordionGroup> */}
         <AccordionMenu appPages={appPages} menuRef={sidemenu} badges={badges} />
       </IonContent>
       <IonFooter>
