@@ -135,23 +135,25 @@ const Menu: React.FC = () => {
       console.log('getmenu', data);
       let parent;
       const pages = [];
-      for (let i=0; i<data.length; i++) {
-        const item = data[i];
-        if (!item.parentid) {
-          parent = item;
-          pages.push({
-            title: item.title,
-            url: item.url,
-            icon: item.icon || '',
-            children: Array()
-          });
-        } else {
-          pages[pages.length-1].children.push({
-            title: item.title,
-            url: item.url,
-            icon: item.icon || ''
-          });
-        }
+      if (data) {
+        for (let i=0; i < data.length; i++) {
+          const item = data[i];
+          if (!item.parentid) {
+            parent = item;
+            pages.push({
+              title: item.title,
+              url: item.url,
+              icon: item.icon || '',
+              children: Array()
+            });
+          } else {
+            pages[pages.length-1].children.push({
+              title: item.title,
+              url: item.url,
+              icon: item.icon || ''
+            });
+          }
+        }  
       }
       console.log('pages:');
       console.log(JSON.stringify(pages, null, 2));
