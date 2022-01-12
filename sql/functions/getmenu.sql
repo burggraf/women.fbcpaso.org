@@ -1,5 +1,5 @@
 create or replace function public.getmenu(m text)
-    RETURNS jsonb language SQL IMMUTABLE AS
+    RETURNS jsonb language SQL SECURITY DEFINER IMMUTABLE AS
 $$
 
 select jsonb_agg(t) from 
@@ -10,6 +10,7 @@ select jsonb_agg(t) from
     g2.menu
     from groups as g1 right outer join groups as g2 on g2.parentid = g1.id 
     where g2.menu = m
+    and g2.allowed_roles && getmyroles()
     order by 
     case when g2.parentid is null then g2.sortkey else g1.sortkey end, g2.sortkey
 ) t;
