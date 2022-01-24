@@ -37,8 +37,8 @@ const Login: React.FC = () => {
         if (error) { toast(error.message) }
         else { 
             // console.log('signInWithEmail: user, session, error', user, session, error);
-            // window.location.href = '/';
-            history.replace('/');
+            window.location.href = '/';
+            // history.replace('/');
          }
     }
     const signUp = async () => {
