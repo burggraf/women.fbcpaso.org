@@ -62,6 +62,16 @@ export default class SupabaseDataService {
     }
   } 
 
+  public async getMyRoles() {
+    const { data, error } = await supabase.rpc('getmyroles', {})  
+    if (error) {
+      console.error(error);
+    } else {
+      console.log('#### getMyRoles: ', data);
+    }
+  }
+
+
   public async getMenu(menu: string) {
     const { data, error } = 
     await supabase.rpc('getmenu', { m: menu})

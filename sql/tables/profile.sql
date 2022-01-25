@@ -28,9 +28,41 @@ returns trigger as $$
 begin
   insert into public.profile (id, email)
   values (new.id, new.email);
+  insert into public.userroles (userid, roles)
+  values (new.id, ARRAY [new.role]);
   return new;
 end;
 $$ language plpgsql security definer;
+
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- UPDATE USER 
+create or replace function public.handle_user_update() 
+returns trigger as $$
+begin
+  --select ARRAY(SELECT DISTINCT UNNEST(new.userroles || '{a,b,c}')) from tabl1
+
+  IF new.email_confirmed_at is not null THEN
+    update public.userroles
+    set roles = ARRAY(
+      SELECT DISTINCT UNNEST(
+        (select roles from public.userroles where userid = new.id) || ARRAY['verified', new.role])
+    )
+    where userid = new.id;
+  ELSE
+    update public.userroles
+    set roles = ARRAY(
+      SELECT DISTINCT UNNEST(
+        (select roles from public.userroles where userid = new.id) || ARRAY[new.role])
+    )
+    where userid = new.id;
+  END IF;
+  return new;
+end;
+$$ language plpgsql security definer;
+
+create trigger on_auth_user_updated
+  after update on auth.users
+  for each row execute procedure public.handle_user_update();

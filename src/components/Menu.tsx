@@ -172,6 +172,7 @@ const Menu: React.FC = () => {
       } else {
         setEmail('');
       }
+      supabaseDataService.getMyRoles();
     });
   }, []) // <-- empty dependency array
 
