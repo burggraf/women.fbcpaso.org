@@ -52,7 +52,7 @@ export default class SupabaseAuthService {
     }
   };
 
-  private async loadProfile() {
+  public async loadProfile() {
     if (this._user?.id!) {
       const { data, error } = 
       await supabase.from('profile')

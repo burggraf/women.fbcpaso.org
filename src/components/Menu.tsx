@@ -133,7 +133,7 @@ const Menu: React.FC = () => {
     if (error) {
       console.error('Error getting menu', error);
     } else {
-      console.log('getmenu', data);
+      //console.log('getmenu', data);
       let parent;
       const pages = [];
       if (data) {
@@ -156,15 +156,15 @@ const Menu: React.FC = () => {
           }
         }  
       }
-      console.log('pages:');
-      console.log(JSON.stringify(pages, null, 2));
+      //console.log('pages:');
+      //console.log(JSON.stringify(pages, null, 2));
       setAppPages(pages);
     }
   }
   const checkRoles = async () => {
-    console.log('checkRoles()');
+    //console.log('checkRoles()');
     const roles = await supabaseDataService.getMyRoles();
-    console.log('roles:', roles);
+    //console.log('roles:', roles);
     if (roles && roles.length === 0) {
       setTimeout(async () => {
         const roles = await supabaseAuthService.getMyRoles();

@@ -62,13 +62,19 @@ export default class SupabaseDataService {
     }
   } 
 
+  public async saveProfile(profile: any) {
+    const { data, error } = 
+    await supabase.from('profile')
+    .upsert(profile);
+    return { data, error };
+  }
+
   public async getMyRoles() {
     const { data, error } = await supabase.rpc('getmyroles', {})  
     if (error) {
       console.error(error);
       return [];
     } else {
-      console.log('#### getMyRoles: ', data);
       return data;
     }
   }
