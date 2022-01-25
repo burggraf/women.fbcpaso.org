@@ -1,8 +1,8 @@
 import { createClient, Provider, SupabaseClient, User } from '@supabase/supabase-js';
 
+import SupabaseAuthService from '../Login/supabase.auth.service';
 // import { keys } from 'rxjs';
 import { keys } from './keys.service';
-import SupabaseAuthService from '../Login/supabase.auth.service';
 
 const supabase: SupabaseClient = createClient(keys.SUPABASE_URL, keys.SUPABASE_KEY);
 let supabaseAuthService: any;
@@ -66,8 +66,10 @@ export default class SupabaseDataService {
     const { data, error } = await supabase.rpc('getmyroles', {})  
     if (error) {
       console.error(error);
+      return [];
     } else {
       console.log('#### getMyRoles: ', data);
+      return data;
     }
   }
 

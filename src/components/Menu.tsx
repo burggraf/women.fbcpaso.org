@@ -1,14 +1,15 @@
 import { IonAccordion, IonAccordionGroup, IonBadge, IonButton, IonContent, IonFooter, IonHeader, IonIcon, IonImg, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, useIonViewWillEnter } from '@ionic/react';
 import { User } from '@supabase/supabase-js';
 import { addIcons } from 'ionicons';
-import { archiveOutline, archiveSharp, barChart, barChartOutline, barChartSharp, book, bookmarkOutline, hammer, handRight, heartOutline, heartSharp, home, homeOutline, homeSharp, informationCircle, informationCircleOutline, informationCircleSharp, list, listCircleOutline, listCircleSharp, listOutline, listSharp, lockClosed, lockClosedOutline, lockClosedSharp, logIn, logInOutline, logInSharp, logoApple, logoBitbucket, logoDiscord, logoFacebook, logoGithub, logoGitlab, logoGoogle, logoTwitch, logoTwitter, logOut, logOutOutline, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, people, peopleOutline, peopleSharp, person, personOutline, personSharp, search, searchOutline, searchSharp, settings, settingsOutline, settingsSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
+import { archiveOutline, archiveSharp, barChart, barChartOutline, barChartSharp, book, bookmarkOutline, checkmarkDoneCircleSharp, hammer, handRight, heartOutline, heartSharp, home, homeOutline, homeSharp, informationCircle, informationCircleOutline, informationCircleSharp, list, listCircleOutline, listCircleSharp, listOutline, listSharp, lockClosed, lockClosedOutline, lockClosedSharp, logIn, logInOutline, logInSharp, logoApple, logoBitbucket, logoDiscord, logoFacebook, logoGithub, logoGitlab, logoGoogle, logoTwitch, logoTwitter, logOut, logOutOutline, logOutSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, people, peopleOutline, peopleSharp, person, personOutline, personSharp, search, searchOutline, searchSharp, settings, settingsOutline, settingsSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { description, version } from '../../package.json';
+import { AccordionMenu } from '../components/AccordionMenu';
 import SupabaseAuthService from '../Login/supabase.auth.service';
 import SupabaseDataService from '../services/supabase.data.service'
-import { AccordionMenu } from '../components/AccordionMenu';
+
 import './Menu.css';
 
 const supabaseAuthService = SupabaseAuthService.getInstance();
@@ -160,6 +161,23 @@ const Menu: React.FC = () => {
       setAppPages(pages);
     }
   }
+  const checkRoles = async () => {
+    console.log('checkRoles()');
+    const roles = await supabaseDataService.getMyRoles();
+    console.log('roles:', roles);
+    if (roles && roles.length === 0) {
+      setTimeout(async () => {
+        const roles = await supabaseAuthService.getMyRoles();
+        if (roles.length > 0) {
+          window.location.href = window.location.href;
+        }
+      }, 3000);
+    } else {
+      console.log('refreshing menu...');
+      await getMenu('main');
+    }
+
+  }
   useEffect(()=>{
     // Only run this one time!  No multiple subscriptions!
     getMenu('main');
@@ -172,7 +190,7 @@ const Menu: React.FC = () => {
       } else {
         setEmail('');
       }
-      supabaseDataService.getMyRoles();
+      checkRoles();
     });
   }, []) // <-- empty dependency array
 
