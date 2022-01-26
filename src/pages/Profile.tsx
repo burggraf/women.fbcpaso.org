@@ -49,7 +49,7 @@ const Profile: React.FC = () => {
 					<IonButtons slot='start'>
 						<IonMenuButton />
 					</IonButtons>
-					<IonTitle>Profile</IonTitle>
+					<IonTitle>My Profile</IonTitle>
 					<IonButtons slot='end'>
 						<IonButton color='primary' onClick={save}>
 							<IonIcon size='large' icon={checkmarkOutline}></IonIcon>
